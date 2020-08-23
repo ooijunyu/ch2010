@@ -182,6 +182,17 @@ The componenets of the list are named according to the argument names used in `l
 myList$before
 ```
 
+## Data Frames
+A data frame is a list of vectors and/or factors of the same length that are related "across" such that data in the same position come from the same experimental unit. In addition, it has a unique set of row names.  
+```{r}
+d <- data.frame(intake.pre, intake.post)
+d
+```
+Note that these data are paired, that is the same women has an intak eof 5260kJ premenstrually and 3910kJ postmenstrually.  
+As with lists, components can be accessed using the $ notation.  
+```{r}
+d$intake.pre
+```
 
 
 
