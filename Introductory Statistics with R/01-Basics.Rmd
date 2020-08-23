@@ -215,6 +215,30 @@ intake.pre[-c(3,5,7)] # Everything except 3rd, 5th and 7th
 ```
 It is not possible to mix positive and negative indices. That would be highly ambiguous.
 
+## Conditional selection
+To subset the postmenstrual energy intake for the fouor women who had an energy intake above 7000kJ premenstrually.
+```{r}
+intake.post[intake.pre>7000]
+```
+This kind of expression makes sense only if the variables that go into the relational expression have the same length as the variable being indexed.  
+To combine several expressions, we can use the logical operators `&` (logical "and"), `|` (logical "or"), and `!` (logical "not").
+```{r}
+intake.post[intake.pre>7000 & intake.pre<=8000]
+```
+There are also `&&` and `||`, which are used for flow control in R programming. They will not be discussed here.  
+The result of the logical expression is a logical vector.
+```{r}
+intake.pre > 7000 & intake.pre <= 8000
+```
+Indexing with a logical vector implies that we pick out the values where the logical vector is `TRUE`. If missing values `NA` appear in an indexing vector, then R will create the corresponding elements in the result but set the values to `NA`.  
+In addition to the relational and logical operators, there are a series of functions that return a logical value. A particularly important one is `is.na(x)`, which is used to find out which elements of `x` are recorded as missing, `NA`.  
+Notice that there is a real need for `is.na` because we cannot make comparisons of the form `x==NA`. That simply gives `NA` as the result for any value of `x`. The result of a comparison with an unknown value is unknown.
+
+
+
+
+
+
 
 
 
