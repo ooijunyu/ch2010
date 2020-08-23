@@ -265,9 +265,29 @@ l <- split(energy$expend, energy$stature)
 l
 ```
 
-
-
-
+## Implicit loops
+A common application of loops is to apply a function to each element of a set of values or vectors and collect the results in a single structure. In R this is abstracted by the functions `lapply` and `sapply`. The former always returns a list, whereas the latter tries to simplify the result to a vector or a matrix if possible.  
+So, to compute the mean of each variable in a data frame of numeric vectors, we can do
+```{r}
+head(thuesen)
+lapply(thuesen, mean, na.rm=TRUE)
+sapply(thuesen, mean, na.rm=TRUE)
+```
+Sometimes we want to repeat something a number of times but still collect the results as a vector. This makes sense only when the repeated computations actually give different results, the common case being simulation studies. This can be done using `sapply`, but there is a simplified version called `replicate`, in which we just have to give a count and the expression to evaluate.
+```{r}
+replicate(10, mean(rexp(20)))
+```
+A similar function, `apply`, allows us to apply a function to the rows or columns of a matrix, as in
+```{r}
+m <- matrix(rnorm(12),nrow = 4)
+m
+apply(m,2,min)
+```
+The second argument is the index (or vector of indices) that defines whether the function is applied columnwise, rowwise or both.  
+The function `tapply` allows us to create tables of the value of a function on subgroups/ factors defined by its second argument, which can be a factor or a list of factors. In the latter case a cross-classified table is generated.
+```{r}
+?tapply(energy$expend,energy$stature, median)
+```
 
 
 
