@@ -194,6 +194,26 @@ As with lists, components can be accessed using the $ notation.
 d$intake.pre
 ```
 
+## Indexing
+If we need the premenstrual energy intake for woman no.5, we can
+```{r}
+intake.pre[5]
+```
+We can reassign the values of the vectors/list/matrices/data frames using indexing method
+```{r}
+intake.pre[5] <- 6600
+intake.pre[5]
+```
+To subset the data, for instance the 3rd, 5th and 7th data,
+```{r}
+intake.pre[c(3,5,7)] #intake,pre[3,5,7] would mean indexing into a 3D array
+intake.pre[1:5]
+```
+We can use negative indexing to get all observations **except** those in the negative indexes.
+```{r}
+intake.pre[-c(3,5,7)] # Everything except 3rd, 5th and 7th
+```
+It is not possible to mix positive and negative indices. That would be highly ambiguous.
 
 
 
