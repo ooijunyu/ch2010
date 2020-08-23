@@ -234,6 +234,17 @@ Indexing with a logical vector implies that we pick out the values where the log
 In addition to the relational and logical operators, there are a series of functions that return a logical value. A particularly important one is `is.na(x)`, which is used to find out which elements of `x` are recorded as missing, `NA`.  
 Notice that there is a real need for `is.na` because we cannot make comparisons of the form `x==NA`. That simply gives `NA` as the result for any value of `x`. The result of a comparison with an unknown value is unknown.
 
+## Indexing of data frames
+```{r}
+d <- data.frame(intake.pre, intake.post)
+d[5,1] # fifth row first column: 5th sample for "pre" measurement
+d[5,] # all data for 5th sample
+d[2] # equivalent to d[,2]
+d[d$intake.pre>7000,] # rows of data where intake.pre>7000
+d[1:2,] # first 2 sample
+head(d) # first 6 line, use head(d,n) for frist n line
+tail(d) # ending 6 lines
+```
 
 
 
