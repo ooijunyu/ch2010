@@ -1,0 +1,93 @@
+---
+title: "Basics"
+output: pdf_document
+---
+
+# First Step
+
+## Installing course package before start
+```{r}
+#install.packages("ISwR")
+#install.packages("ggplot2")
+library(ISwR)
+library(ggplot2)
+```
+
+## Vectorized arithmetic
+One strength of R is that it can handle entire *data vectos* as single objects.  
+The operation is carried out elementwise for the code shown.
+```{r}
+weight <- c(60,72,57,90,95,72)
+height <- c(1.75,1.80,1.65,1.90,1.74,1.91)
+bmi <- weight/height^2
+bmi
+```
+It is in fact possible to perform arithmetic operations on vectors of different length. We already used that when we calculated the `height^2` part above since `2` has length 1. In such cases, the shorter vector is **_recycled_**.  
+A warning is issued if the longer vector is not a multiple of the shorter in length.  
+These conventions for vectorized calculations make it very easy to specify typical statistical calculations. Consider, for instance, the calculation of the mean and standard deviation of the `weight` variable.  
+mean, $\bar{x}=\sum{\frac{x_i}{n}}$:
+```{r}
+sum(weight)
+xbar <- sum(weight)/length(weight)
+xbar
+```
+standard deviation, $s=\sqrt{\frac{\sum{(x_i-\bar{x})^2}}{n-1}}$
+```{r}
+sd <- sqrt(sum((weight-xbar)^2)/(length(weight)-1))
+sd
+```
+
+Since R is a statistical program, such calculations are already built into the program, and you get the same results just by entering
+```{r}
+mean(weight)
+sd(weight)
+```
+
+## Standard Procedures
+The BMI for a normal-weight individual should be between 20 and 25, and we want to know if our data deviate systemically from that. We can use a one-sample *t* test to assess whether the six persons' BMI can be assumed ot have mean 22.5 given that they come from a normal distribution.
+```{r}
+t.test(bmi, mu = 22.5)
+```
+
+## Graphics
+The idea behind the BMI calculation is that this value should be independent of the person's height, thus giving us a single number as an indication of whether someone is overweight and by how much. Since a normal BMI should be about 22.5, we would expect that $weight\approx22.5\times height^2$. Accordingly, we can superimpose a curve of expected weights at BMI 22.5 on the figure.
+```{r}
+plot(height,weight, pch=2) #pch - plotting character
+hh <- c(1.65,1.70,1.75,1.80,1.85,1.90)
+weight.BMI22.5 <- 22.5*hh^2
+lines(hh, weight.BMI22.5)
+```
+`ggplot2` equivalent:
+```{r}
+ggplot(as.data.frame(height,weight),mapping=aes(x=height,y=weight)) +
+  geom_point()+
+  geom_line(data=as.data.frame(hh,weight.BMI22.5), mapping = aes(hh,weight.BMI22.5))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
