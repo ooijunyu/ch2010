@@ -64,6 +64,39 @@ ggplot(as.data.frame(height,weight),mapping=aes(x=height,y=weight)) +
   geom_line(data=as.data.frame(hh,weight.BMI22.5), mapping = aes(hh,weight.BMI22.5))
 ```
 
+## Vectors
+Numeric vector
+```{r}
+c(1,2,3)
+```
+Character vector
+```{r}
+c("Huey","Dewey","Louie")
+```
+Logical vector
+```{r}
+c(TRUE,TRUE,FALSE,TRUE)
+```
+
+## Quoting and escape sequences
+If we print a character vector, it usually comes out with quotes added to each element. There is a way to avoid this, namely to use the `cat` function.
+```{r}
+cat(c("Huey","Dewey","Louie"))
+```
+This prints the strings without quotes, just separated by a space character. There is no newline following the string, so the prompt (`>`) for the enxt line of input follows directly at the end of the line.  
+Notice that when the character vector is printed by `cat`, there is no way of telling the difference from the single string `"Huey Dewey Louie"`.  
+To get the system ptompr onto the next line, we must include a newline character
+```{r}
+cat("Huey","Dewey","Louie","\n")
+```
+The backslash (`\`) is know as the *escape character*
+```{r}
+cat("What is \"R\"?\n")
+```
+
+
+
+
 
 
 
