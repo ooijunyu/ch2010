@@ -128,6 +128,30 @@ The backslash (`\`) is know as the *escape character*
 cat("What is \"R\"?\n")
 ```
 
+## Matrices and Arrays
+```{r}
+x <- 1:12
+dim(x) <- c(3,4)
+x
+```
+The `dim` assignment function sets or changes the *dimension attribute* of `x`, causing R to treat the vector of 12 numbers as a 3 x 4 matrix.
+```{r}
+matrix(1:12, nrow=3, byrow=TRUE)
+```
+Notice how the `byrow = TRUE` switch causes the matrix to be filled in a rowwise fashion rather than columnwise.  
+Useful functions that operate on matrices include `rownames`, `colnames` and the transposition function `t`
+```{r}
+x <- matrix(1:12, nrow=3, byrow = TRUE)
+rownames(x) <- LETTERS[1:3]
+x
+t(x)
+```
+The character vector `LETTERS` is a built-in variable that contains the capital letters A-Z. Similar useful vectors are `letters`, `month.name`, and `month.abb`  
+We can glue vectors together using `rbind()` or `cbind()`
+```{r}
+cbind(A=1:4,B=5:8,C=9:12)
+rbind(A=1:4,B=5:8,C=9:12)
+```
 
 
 
