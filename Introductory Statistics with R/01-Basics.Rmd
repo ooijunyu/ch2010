@@ -78,6 +78,40 @@ Logical vector
 c(TRUE,TRUE,FALSE,TRUE)
 ```
 
+### Functions that create vectors
+`c()`, concatenation
+```{r}
+x<- c(1,2,3)
+y <- c(10,20)
+z <- c(x,y,100)
+z
+# Assigning names to the elements
+x <- c(red="Huey", blue="Dewey", green="Louie")
+x
+names(x) # To extract the names
+```
+`seq()`,sequence
+```{r}
+seq(4,10,2)
+4:9 # For step size equals to 1
+```
+`rep()`, replicate
+Generate repeated values, depending on whether the second argument is a vector or a single number
+```{r}
+oops <- c(7,9,13)
+rep(oops,3) # Repeat oops thrice
+rep(oops,1:3) # Repeat first element once, second element twice, third element thrice
+```
+The `rep function is often used for things such as group codes: IF it is known that the first 10 observations are men and the last 15 ar women, we can use 
+```{r}
+rep(1:2,c(10,15))
+```
+The special case where there are equally many replications of each value can be obtained using the `each` argument.
+```{r}
+rep(1:2, each=10) # same as rep(1:2, c(10,10))
+```
+
+
 ## Quoting and escape sequences
 If we print a character vector, it usually comes out with quotes added to each element. There is a way to avoid this, namely to use the `cat` function.
 ```{r}
