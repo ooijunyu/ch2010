@@ -246,6 +246,24 @@ head(d) # first 6 line, use head(d,n) for frist n line
 tail(d) # ending 6 lines
 ```
 
+## Grouped data and data frames
+The natural way of storing grouped data in a data frame is to have the data themselves sin one vector and parallel to that have a factor telling which data are from which group. Consider, for instance, the following data set on energy expenditure for lean and obese women.
+```{r}
+energy
+```
+This is a convenient format since it generalizes easily to data classified by multiple criteria. However, sometimes it is desirable to have data in a separate vector for each group..
+```{r}
+exp.lean <- energy$expend[energy$stature=="lean"]
+exp.obese <- energy$expend[energy$stature=="obese"]
+exp.lean
+exp.obese
+```
+Alternatively, we can use the `split` function, which generates a list of vectors according to a grouping
+```{r}
+# split(x,f), split data in x into the groups defined by f
+l <- split(energy$expend, energy$stature)
+l
+```
 
 
 
