@@ -152,7 +152,19 @@ We can glue vectors together using `rbind()` or `cbind()`
 cbind(A=1:4,B=5:8,C=9:12)
 rbind(A=1:4,B=5:8,C=9:12)
 ```
-
+## Factors
+It is common in statistical data to havecategorical variables, indicating some subdivision of data, and typically these are input using a numeric code.  
+There are analyses where it is essential for R to be able to distinguish between categorical codes and variables whose values have a direct numerical meaning.  
+The terminology is that a factor has a set of __*levels*__. Internally, a n-level factor consists of two items: (a) a vector of integers between 1 and n, and (b) a character vector of length n containing strings describing what the n levels are.
+```{r}
+pain <- c(0,3,2,2,1)
+fpain <- factor(pain, levels = 0:3) # treat the numeric vector as categorical variable
+levels(fpain) <- c("none","mild","medium","severe")
+fpain
+as.numeric(fpain)
+levels(fpain)
+```
+R also allows us to create a special kind of factor in which the levels are ordered using the `ordered` function, which works similarly to `factor`. These are potentially useful in that they distinguisg nominal and ordinal variables from each other.
 
 
 
