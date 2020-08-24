@@ -29,6 +29,30 @@ The help pages can be accessed via "help" in the menu bar on Windows and by ente
 From the command line, we can always enter `help(aggregate)` to get help on the `aggregate` or use the prefix form `?aggregate`.  
 The function `help.search` is similar but uses fuzzy matching and searches deeper into the help pages, so that it will be able to locate, for example, Kendall's correlation coeefcient in `cor.test` if we use `help.search("kendla")`.  
 
+### 3. `attach` and `detach`
+The notation for accessing variables in data frames gets rather heavy if we repeatedly have to write longish command like
+```{r}
+plot(thuesen$blood.glucose, thuesen$short.velocity)
+```
+We can meke R look for objects among the variables in a given data frame.
+```{r}
+attach(thuesen)
+blood.glucose
+```
+What happens is that the data frame `thuesen` is placed in the system's *search path*. We can view the search path with `search`:
+```{r}
+search()
+```
+It is not possible to attach data frames in front of `.GlobalEnv` or following `package:base`. However, it is possible to attach more than one data frame. New data frames are inserted into position 2 by default, and everything excep `.GlobalEnv` moves one step to the right,  
+It is however, possible to specify that a data frame should be searched before `.GlobalEnv` by using constructions of the form
+```{r}
+with(thuesen, plot(blood.glucose, short.velocity))
+```
+We can remove a data frame from the search path with `detach`. If no arguments are given, the data frame in position 2 is removed. `.GlobalEnv` and `package:base` cannot be `detach`'ed.
+```{r}
+detach()
+search()
+```
 
 
 
