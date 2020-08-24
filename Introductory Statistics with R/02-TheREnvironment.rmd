@@ -20,7 +20,7 @@ ls()
 The entire workspace can be cleared using `rm(list=ls())`. This does not remove variables whose name begins with a dot because they are not listed by `ls()`. We would need `ls(all=T)` for that, but it could be dangerous as such names are used for system purposes.  
 We can save the workspace to a file at anytime using `save.image()`, then it will be saved to a file called `.RData` in our working directory. The `.RData` file is loaded by default when R is started in its directory. Other save files can be loaded into our current workspace using `load`.  
 
-## Help
+## 2. Help
 The help pages can be accessed via "help" in the menu bar on Windows and by entering `help.start()`.  
 From the command line, we can always enter `help(aggregate)` to get help on the `aggregate` or use the prefix form `?aggregate`.  
 The function `help.search` is similar but uses fuzzy matching and searches deeper into the help pages, so that it will be able to locate, for example, Kendall's correlation coeefcient in `cor.test` if we use `help.search("kendla")`.  
