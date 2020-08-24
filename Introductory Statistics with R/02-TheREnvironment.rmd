@@ -4,6 +4,10 @@ output: pdf_document
 ---
 
 # The R environment
+```{r}
+library(ISwR)
+```
+
 ## 1. Session Managenent
 ### 1. The workspace
 We can use `ls()` to see which variables are defined in the workspace.
