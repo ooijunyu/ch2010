@@ -1,0 +1,6 @@
+---
+title: "02 - The R environment"
+output: pdf_document
+---
+
+# The R environment
