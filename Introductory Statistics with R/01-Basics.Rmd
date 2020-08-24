@@ -286,7 +286,7 @@ apply(m,2,min)
 The second argument is the index (or vector of indices) that defines whether the function is applied columnwise, rowwise or both.  
 The function `tapply` allows us to create tables of the value of a function on subgroups/ factors defined by its second argument, which can be a factor or a list of factors. In the latter case a cross-classified table is generated.
 ```{r}
-?tapply(energy$expend,energy$stature, median)
+tapply(energy$expend,energy$stature, median)
 ```
 ## Sorting
 ```{r}
