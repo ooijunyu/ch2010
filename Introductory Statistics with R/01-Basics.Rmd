@@ -288,7 +288,30 @@ The function `tapply` allows us to create tables of the value of a function on s
 ```{r}
 ?tapply(energy$expend,energy$stature, median)
 ```
-
+## Sorting
+```{r}
+intake
+intake$post
+sort(intake$post)
+```
+Sorting a single vector is not always what is required. Often we need to sort a series of variables according to the values of some other variables - blood pressures sorted by sex and age, for instance.  
+For this purpose, we first compute an *ordering* of a variable.
+```{r}
+order(intake$post)
+```
+Interpreting the result of `order` is a bit tricky - it should be read as follows: We sorted `intake$post` by placing its values in the order no.3, no.1, no.2, no.6, etc.  
+The point is that, by indexing with this vector, other variables can be sorted by the same criterion. Note that indexing with a vector containing the numbers from 1 to the number of elements exactly once corresponds to a reordering of the elements.  
+```{r}
+o <- order(intake$post)
+intake$post[o]
+intake$pre[o]
+```
+It is of course also possible to sort the entire data frame `intake`
+```{r}
+intake.sorted <- intake[o,]
+intake.sorted
+```
+Sorting by several criteria is done simply by having several arguments to `order`; for instance, `order(sedx,age)` will give a main division into men and women, and within each sex an ordering by age. The second variable is used when the order cannot be decided from the first variable. Sorting in reverse order can be handled by, for example, changing the sign of the variable.
 
 
 
