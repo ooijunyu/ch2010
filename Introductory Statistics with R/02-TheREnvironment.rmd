@@ -54,6 +54,35 @@ detach()
 search()
 ```
 
+### `subset`, `transform`, and `within`
+We can attach a data frame to avoid the cumbersome indexing of every variable inside of it. However, this is less helpful for selecting subsets of data and for creating new data frames with transformed variables. A couple of functions exist to make these operations easier.
+```{r}
+thue2 <- subset(thuesen, blood.glucose<7)
+thue2
+thue3 <- transform(thuesen,log.gluc=log(blood.glucose))
+thue3
+```
+`subset` also works on single vectors. This is nearly the same as indexing with a logical vector (such as `short,veloctiy[blood.glucose<7]), except that observations with missing values in the selection criterion are excluded.  
+`subset` also has a `select` argument which can be used to extract variables from the data frame.  
+The `transform` function has a couple of drawbacks, the most serious of which is probably that it does not allow chained calculations where some of the new variables depend on the others. The `=` signs in the syntax are not assignments, but indicate names, which are assigned to the computed vectors in the last step.  
+An alternative to `transform` is the `within` function, which can be used like following:  
+```{r}
+thue4 <- within(thuesen,{
+  log.gluc <- log(blood.glucose)
+  m <- mean(log.gluc)
+  centered.log.gluc <- log.gluc - m
+  rm(m)
+})
+thue4
+```
+The function is similar to `with`, but instead of just rturning the computed value, it collects all new and modified variables into a modified data frame, which is then returned.  
+
+
+
+
+
+
+
 
 
 
