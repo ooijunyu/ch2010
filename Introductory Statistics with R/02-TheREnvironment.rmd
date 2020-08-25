@@ -54,7 +54,7 @@ detach()
 search()
 ```
 
-### `subset`, `transform`, and `within`
+### 4.`subset`, `transform`, and `within`
 We can attach a data frame to avoid the cumbersome indexing of every variable inside of it. However, this is less helpful for selecting subsets of data and for creating new data frames with transformed variables. A couple of functions exist to make these operations easier.
 ```{r}
 thue2 <- subset(thuesen, blood.glucose<7)
