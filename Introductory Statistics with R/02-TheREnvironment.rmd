@@ -77,6 +77,28 @@ thue4
 ```
 The function is similar to `with`, but instead of just rturning the computed value, it collects all new and modified variables into a modified data frame, which is then returned.  
 
+## The graphics subsystem
+### 1. Plot Layout
+A standard `x-y` plot has an `x` and a `y` title label genrated from the expressions being plotted. We can override these labels and also add two further titles, a main title above the plot and a subtitle at the very bottom, in the plot call.
+```{r}
+x <- runif(50,0,2)
+y <- runif(50,0,2)
+plot(x,y, main="Main title", sub="subtitle", xlab="x-label", ylab="y-label")
+```
+Inside the plotting region, we can place points and lines that are either specified in the `plot` call or added later with `points` and `line`.
+```{r}
+plot(x,y, main="Main title", sub="subtitle", xlab="x-label", ylab="y-label")
+text(0.6,0.6,"text at (0.6,0.6)")
+abline(h=.6, v=.6)
+```
+Here, the `abline` call is just to show how the text is centered on the point (0.6, 0.6). Normally, `abline` plots the line `y=a+bx` when given `a` and `b` as arguments, but it can also be used to draw horizontal and vertical lines.  
+The margin coordinates are used by th `mtext` function.
+```{r}
+plot(x,y, main="Main title", sub="subtitle", xlab="x-label", ylab="y-label")
+for (side in 1:4) mtext(-1:4, side = side, at=.7, line=-1:4)
+mtext(paste("side",1:4),side=1:4, line=-1, font=2)
+```
+The `for` loop places the numbers -1 to 4 on corresponding lines in each of the four margins at an off-center position of 0.7 mesured in user coordinates. The subsequent call places a label on each side, giving the side number. The argument `font=2` means that a boldface font is used.  
 
 
 
